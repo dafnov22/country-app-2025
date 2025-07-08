@@ -1,0 +1,13 @@
+<country-search
+  [placeholder]="'Search by capital name'"
+  (value)="searchByCapital($event)"
+/>
+
+@if (isError()) {
+<div class="alert alert-danger">
+  {{ isError() }}
+</div>
+} @else {
+<country-list [countries]="countries()" />
+
+}
