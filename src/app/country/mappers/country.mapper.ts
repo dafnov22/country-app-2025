@@ -9,8 +9,10 @@ export class CountryMapper {
       flagSvg: restCountry.flags.svg,
       name: restCountry.translations['spa']?.common || restCountry.name.common, // Si no hay traducción al español, usar el nombre común
       // capital: restCountry.capital ? restCountry.capital[0] : 'No capital',
-      capital: restCountry.capital.join(','), //unir en caso de que haya mas de una capital
+      capital: restCountry.capital?.join(','), //unir en caso de que haya mas de una capital
       population: restCountry.population,
+      region: restCountry.region,
+      subregion: restCountry.subregion || 'No subregion', // Manejar caso donde
     };
   }
 

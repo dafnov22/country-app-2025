@@ -1,6 +1,19 @@
 <country-search
   [placeholder]="'Search by country name'"
-  (value)="searchByCapital($event)"
+  (value)="query.set($event)"
+  [initialValue]="query()"
 />
 
-<!-- <country-list /> -->
+<!-- @if (countryResource.error()) {
+<div class="alert alert-danger">
+  {{ countryResource.error() }}
+</div>
+} @if(countryResource.hasValue()) {
+<country-list [countries]="countryResource.value()!" />
+} -->
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isEmpty]="countryResource.value()?.length === 0"
+  [isLoading]="countryResource.isLoading()"
+/>

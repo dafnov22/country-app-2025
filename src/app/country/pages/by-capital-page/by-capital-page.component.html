@@ -1,13 +1,25 @@
-<country-search
+<!-- <country-search
   [placeholder]="'Search by capital name'"
   (value)="searchByCapital($event)"
+/> -->
+<country-search
+  [placeholder]="'Search by capital name'"
+  (value)="query.set($event)"
+  [debounceTime]="300"
+  [initialValue]="query()"
 />
 
-@if (isError()) {
+<!-- @if (isError()) {
 <div class="alert alert-danger">
   {{ isError() }}
 </div>
 } @else {
 <country-list [countries]="countries()" />
+} -->
 
-}
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isEmpty]="countryResource.value()?.length === 0"
+  [isLoading]="countryResource.isLoading()"
+/>
